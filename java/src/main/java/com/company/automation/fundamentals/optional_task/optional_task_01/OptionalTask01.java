@@ -20,78 +20,61 @@ import java.util.regex.Pattern;
 
 public class OptionalTask01 {
     public static void main(String[] args) {
-        String numbersLine;
-        String[] stringOfNumbers;
+        String numbersLine = getStringOfIntegersFromConsole();
 
-        numbersLine = inputIntegersAsAString();
+        String[] arrayOfNumbers = numbersLine.split("\\s+");
 
-        stringOfNumbers = numbersLine.split("\\s+");
-
-        System.out.println(Arrays.toString(stringOfNumbers));
+        System.out.println(Arrays.toString(arrayOfNumbers));
 
         System.out.println();
-        printTheShortestNumber(stringOfNumbers);
-        printTheLongestNumber(stringOfNumbers);
+        printTheShortestNumber(arrayOfNumbers);
+        printTheLongestNumber(arrayOfNumbers);
 
-        String[] arrayByIncreasingLength;
-        arrayByIncreasingLength = sortByIncreasingLength(stringOfNumbers);
+        String[] arrayByIncreasingLength = sortByIncreasingLength(arrayOfNumbers);
         System.out.println("\nNumbers are sorted by increasing their length:");
         System.out.println(Arrays.toString(arrayByIncreasingLength));
 
-        String[] arrayByDecreasingLength;
-        arrayByDecreasingLength = sortByDecreasingLength(stringOfNumbers);
+        String[] arrayByDecreasingLength = sortByDecreasingLength(arrayOfNumbers);
         System.out.println("\nNumbers are sorted by decreasing their length:");
         System.out.println(Arrays.toString(arrayByDecreasingLength));
 
-        printIntegersThatAreShorterThanAverageLength(stringOfNumbers);
-        printIntegersThatAreLongerThanAverageLength(stringOfNumbers);
+        printIntegersThatAreShorterThanAverageLength(arrayOfNumbers);
+        printIntegersThatAreLongerThanAverageLength(arrayOfNumbers);
 
-        System.out.println("\n" + Arrays.toString(stringOfNumbers));
+        System.out.println("\n" + Arrays.toString(arrayOfNumbers));
 
-        int numberWithMinAmountOfDifferentDigits;
-        numberWithMinAmountOfDifferentDigits = getIntegerWithMinAmountOfDifferentDigits(stringOfNumbers);
+        int numberWithMinAmountOfDifferentDigits = getIntegerWithMinAmountOfDifferentDigits(arrayOfNumbers);
         System.out.println("\nThe first number that contains min amount of different digits: " +
                 numberWithMinAmountOfDifferentDigits + "\n");
 
-        int quantityOfNumbersWithOnlyEvenDigits;
-        quantityOfNumbersWithOnlyEvenDigits = getQuantityOfIntegersWithOnlyEvenDigits(stringOfNumbers);
+        int quantityOfNumbersWithOnlyEvenDigits = getQuantityOfIntegersWithOnlyEvenDigits(arrayOfNumbers);
         System.out.println("Quantity of numbers which contain only even digits: " +
                 quantityOfNumbersWithOnlyEvenDigits + "\n");
 
-        int quantityOfNumbersWithEqualAmountOfEvenAndUnevenDigits;
-        quantityOfNumbersWithEqualAmountOfEvenAndUnevenDigits =
-                getQuantityOfIntegersWithEqualAmountOfEvenAndUnevenDigits(stringOfNumbers);
+        int quantityOfNumbersWithEqualAmountOfEvenAndUnevenDigits = getQuantityOfIntegersWithEqualAmountOfEvenAndUnevenDigits(arrayOfNumbers);
         System.out.println("Quantity of numbers which contain equal amount of even and uneven digits: " +
                 quantityOfNumbersWithEqualAmountOfEvenAndUnevenDigits + "\n");
 
-        int integerWithRisingDigitsSequence;
-        integerWithRisingDigitsSequence = getIntegerWithRisingDigitsSequence(stringOfNumbers);
+        int integerWithRisingDigitsSequence = getIntegerWithRisingDigitsSequence(arrayOfNumbers);
         System.out.println("The first number with rising digits sequence: " + integerWithRisingDigitsSequence + "\n");
 
-        int integerWithOnlyDifferentDigits;
-        integerWithOnlyDifferentDigits = getIntegerWithOnlyDifferentDigits(stringOfNumbers);
+        int integerWithOnlyDifferentDigits = getIntegerWithOnlyDifferentDigits(arrayOfNumbers);
         System.out.println("The first number with only different digits: " + integerWithOnlyDifferentDigits + "\n");
-
     }
 
 
-    private static String inputIntegersAsAString() {
+    private static String getStringOfIntegersFromConsole() {
         boolean hasWrongCharacters;
         boolean hasDigits;
         String line;
-        String message;
+        String message = "Enter integer numbers using SPACE to divide them:>> ";
         Scanner in = new Scanner(System.in);
 
-        message = "Enter integer numbers using SPACE to divide them:>> ";
         do {
             System.out.print(message);
-            Pattern restrictedCharacters = Pattern.compile("[^0-9-\\s+]");
-            Pattern mustHave = Pattern.compile("[\\d]");
             line = in.nextLine();
-            Matcher matcher = restrictedCharacters.matcher(line);
-            hasWrongCharacters = matcher.find();
-            matcher = mustHave.matcher(line);
-            hasDigits = matcher.find();
+            hasWrongCharacters = Pattern.compile("[^0-9-\\s+]").matcher(line).find();
+            hasDigits = Pattern.compile("[\\d]").matcher(line).find();
         } while (hasWrongCharacters || !hasDigits);
 
         line = line.replaceAll("\\+\\s*", " ");
@@ -102,19 +85,18 @@ public class OptionalTask01 {
 
 
     private static void printTheShortestNumber(String[] numbers) {
-        int minLength;
-        minLength = numbers[0].length();
+        int minLength = numbers[0].length();
 
-        for (String item : numbers) {
-            if (item.length() < minLength) {
-                minLength = item.length();
+        for (String value : numbers) {
+            if (value.length() < minLength) {
+                minLength = value.length();
             }
         }
         System.out.print("The shortest number(s) is(are): ");
 
-        for (String val : numbers) {
-            if (val.length() == minLength) {
-                System.out.print(val + " ");
+        for (String value : numbers) {
+            if (value.length() == minLength) {
+                System.out.print(value + " ");
             }
         }
         System.out.print("(length: " + minLength + ")\n");
@@ -122,19 +104,18 @@ public class OptionalTask01 {
 
 
     private static void printTheLongestNumber(String[] numbers) {
-        int maxLength;
-        maxLength = numbers[0].length();
+        int maxLength = numbers[0].length();
 
-        for (String val : numbers) {
-            if (val.length() > maxLength) {
-                maxLength = val.length();
+        for (String value : numbers) {
+            if (value.length() > maxLength) {
+                maxLength = value.length();
             }
         }
         System.out.print("The longest number(s) is(are): ");
 
-        for (String val : numbers) {
-            if (val.length() == maxLength) {
-                System.out.print(val + " ");
+        for (String value : numbers) {
+            if (value.length() == maxLength) {
+                System.out.print(value + " ");
             }
         }
         System.out.print("(length: " + maxLength + ")\n");
@@ -181,9 +162,9 @@ public class OptionalTask01 {
         System.out.printf("\nAverage length: %.2f\n", averageLength);
         System.out.println("Numbers which length less than average length:");
 
-        for (String var : numbers) {
-            if ((double) var.length() < averageLength) {
-                System.out.println(var + "(length: " + var.length() + ")  ");
+        for (String value : numbers) {
+            if ((double) value.length() < averageLength) {
+                System.out.println(value + "(length: " + value.length() + ")  ");
             }
         }
     }
@@ -195,9 +176,9 @@ public class OptionalTask01 {
         System.out.printf("\nAverage length: %.2f\n", averageLength);
         System.out.println("Numbers which length more than average length:");
 
-        for (String var : numbers) {
-            if ((double) var.length() > averageLength) {
-                System.out.println(var + "(length: " + var.length() + ")  ");
+        for (String value : numbers) {
+            if ((double) value.length() > averageLength) {
+                System.out.println(value + "(length: " + value.length() + ")  ");
             }
         }
     }
@@ -207,8 +188,8 @@ public class OptionalTask01 {
         double averageLength;
         int fullLength = 0;
 
-        for (String val : numbers) {
-            fullLength += val.length();
+        for (String value : numbers) {
+            fullLength += value.length();
         }
 
         averageLength = (double) fullLength / numbers.length;
@@ -223,12 +204,12 @@ public class OptionalTask01 {
         int minDifferentDigitsIndex = 0;
 
         for (int i = 0; i < numbers.length; i++) {
-            int currentDifferentDigitsAmount;
+            int differentDigitsAmount;
 
-            currentDifferentDigitsAmount = getAmountOfDifferentDigits(numbers[i]);
+            differentDigitsAmount = getAmountOfDifferentDigits(numbers[i]);
 
-            if (currentDifferentDigitsAmount < minDifferentDigitsAmount) {
-                minDifferentDigitsAmount = currentDifferentDigitsAmount;
+            if (differentDigitsAmount < minDifferentDigitsAmount) {
+                minDifferentDigitsAmount = differentDigitsAmount;
                 minDifferentDigitsIndex = i;
             }
         }
@@ -241,19 +222,19 @@ public class OptionalTask01 {
 
     private static int getAmountOfDifferentDigits(String number) {
         int amountOfDifferentDigits;
-        StringBuilder differentNumbers = new StringBuilder();
+        StringBuilder differentDigits = new StringBuilder();
 
         for (int i = 0; i < number.length(); i++) {
             if (number.charAt(i) == '-') {
                 continue;
             }
-            String stringOfDifferentNumbers = differentNumbers.toString();
+            String stringOfDifferentNumbers = differentDigits.toString();
             if (!stringOfDifferentNumbers.contains(Character.toString(number.charAt(i)))) {
-                differentNumbers.append(number.charAt(i));
+                differentDigits.append(number.charAt(i));
             }
         }
 
-        amountOfDifferentDigits = differentNumbers.toString().length();
+        amountOfDifferentDigits = differentDigits.toString().length();
 
         return amountOfDifferentDigits;
     }
@@ -262,9 +243,9 @@ public class OptionalTask01 {
     private static int getQuantityOfIntegersWithOnlyEvenDigits(String[] numbers) {
         int quantityOfNumbersWithOnlyEvenDigits = 0;
 
-        for (String val : numbers) {
+        for (String value : numbers) {
 
-            if (hasOnlyEvenDigits(val)) {
+            if (hasOnlyEvenDigits(value)) {
                 quantityOfNumbersWithOnlyEvenDigits++;
             }
         }
@@ -282,9 +263,9 @@ public class OptionalTask01 {
     private static int getQuantityOfIntegersWithEqualAmountOfEvenAndUnevenDigits(String[] numbers) {
         int quantityOfNumbersWithEqualAmountOfEvenAndUnevenDigits = 0;
 
-        for (String val : numbers) {
+        for (String value : numbers) {
 
-            if (hasEqualAmountOfEvenAndUnevenDigits(val)) {
+            if (hasEqualAmountOfEvenAndUnevenDigits(value)) {
                 quantityOfNumbersWithEqualAmountOfEvenAndUnevenDigits++;
             }
         }
@@ -294,41 +275,29 @@ public class OptionalTask01 {
 
 
     private static boolean hasEqualAmountOfEvenAndUnevenDigits(String number) {
-        String evenDigits;
-        String unevenDigits;
-        Matcher matcher;
-        StringBuilder digits = new StringBuilder();
+        int amountOfEvenDigits = 0;
+        int amountOfUnevenDigits = 0;
+        int[] digitsOfTheNumber = getDigitsOfTheNumber(number);
 
-        Pattern even = Pattern.compile("[02468]");
-        Pattern uneven = Pattern.compile("[13579]");
-        matcher = even.matcher(number);
-
-        while (matcher.find()) {
-            digits.append(matcher.group());
+        for (int value : digitsOfTheNumber) {
+            if (value % 2 == 0) {
+                amountOfEvenDigits++;
+            } else {
+                amountOfUnevenDigits++;
+            }
         }
 
-        evenDigits = digits.toString();
-
-        digits.delete(0, digits.length());
-        matcher = uneven.matcher(number);
-
-        while (matcher.find()) {
-            digits.append(matcher.group());
-        }
-
-        unevenDigits = digits.toString();
-
-        return evenDigits.length() == unevenDigits.length();
+        return amountOfEvenDigits == amountOfUnevenDigits;
     }
 
 
     private static int getIntegerWithRisingDigitsSequence(String[] numbers) {
         int integerWithRisingDigitsSequence = 0;
 
-        for (String val : numbers) {
+        for (String value : numbers) {
 
-            if (hasRisingDigitsSequence(val)) {
-                integerWithRisingDigitsSequence = Integer.parseInt(val);
+            if (hasRisingDigitsSequence(value)) {
+                integerWithRisingDigitsSequence = Integer.parseInt(value);
                 break;
             }
         }
@@ -338,19 +307,18 @@ public class OptionalTask01 {
 
 
     private static boolean hasRisingDigitsSequence(String number) {
-        boolean isRisingDigitsSequence = false;
         int[] digitsOfTheNumber = getDigitsOfTheNumber(number);
 
-        for (int i = 0; i < digitsOfTheNumber.length - 1; i++) {
-            if (digitsOfTheNumber[i + 1] > digitsOfTheNumber[i]) {
-                isRisingDigitsSequence = true;
-            } else {
-                isRisingDigitsSequence = false;
-                break;
-            }
+        if (digitsOfTheNumber.length == 1) {
+            return false;
         }
 
-        return isRisingDigitsSequence;
+        for (int i = 0; i < digitsOfTheNumber.length - 1; i++) {
+            if (digitsOfTheNumber[i + 1] < digitsOfTheNumber[i]) {
+                return false;
+            }
+        }
+        return true;
     }
 
 
@@ -373,7 +341,6 @@ public class OptionalTask01 {
             digits[i] = digit;
             number = num;
         }
-
         return digits;
     }
 
@@ -381,9 +348,9 @@ public class OptionalTask01 {
     private static int getIntegerWithOnlyDifferentDigits(String[] numbers) {
         int integerWithOnlyDifferentDigits = 0;
 
-        for (String val : numbers) {
-            if (hasOnlyDifferentDigits(val)) {
-                integerWithOnlyDifferentDigits = Integer.parseInt(val);
+        for (String value : numbers) {
+            if (hasOnlyDifferentDigits(value)) {
+                integerWithOnlyDifferentDigits = Integer.parseInt(value);
                 break;
             }
         }
@@ -392,23 +359,25 @@ public class OptionalTask01 {
 
 
     private static boolean hasOnlyDifferentDigits(String number) {
-        boolean hasOnlyDifferentDigits = true;
         StringBuilder sequence = new StringBuilder();
 
+        if (number.length() == 1) {
+            return true;
+        }
+
+        if (number.length() == 2 && number.charAt(0) == '-') {
+            return true;
+        }
+
         for (int i = 0; i < number.length(); i++) {
-            if (number.length() == 1) {
-                hasOnlyDifferentDigits = false;
-                break;
-            }
+
             String digits = sequence.toString();
             if (digits.contains(Character.toString(number.charAt(i)))) {
-                hasOnlyDifferentDigits = false;
-                break;
+                return false;
             } else {
                 sequence.append(number.charAt(i));
             }
         }
-
-        return hasOnlyDifferentDigits;
+        return true;
     }
 }
