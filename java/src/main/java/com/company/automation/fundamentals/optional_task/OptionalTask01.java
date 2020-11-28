@@ -1,4 +1,4 @@
-package com.company.automation.fundamentals.optional_task.optional_task_01;
+package com.company.automation.fundamentals.optional_task;
 
 /*
 Задание. Ввести n чисел с консоли.

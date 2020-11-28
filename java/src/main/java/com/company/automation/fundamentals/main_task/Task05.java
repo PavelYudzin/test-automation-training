@@ -8,7 +8,7 @@ package com.company.automation.fundamentals.main_task;
 import java.util.Scanner;
 
 public class Task05 {
-    
+
     static Scanner in = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -60,7 +60,7 @@ public class Task05 {
         }
     }
 
-    public static int inputInteger(String message) {
+    private static int inputInteger(String message) {
         System.out.print(message);
         while (!in.hasNextInt()) {
             in.next();

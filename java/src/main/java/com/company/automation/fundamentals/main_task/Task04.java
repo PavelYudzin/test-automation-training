@@ -21,7 +21,7 @@ public class Task04 {
         System.out.println("multiply = " + multiply);
     }
 
-    public static int getSum(String[] args) {
+    private static int getSum(String[] args) {
         int sum = 0;
 
         for (String val : args) {
@@ -31,7 +31,7 @@ public class Task04 {
         return sum;
     }
 
-    public static int multiply(String[] args) {
+    private static int multiply(String[] args) {
         int multiply = 1;
 
         for (String val : args) {
