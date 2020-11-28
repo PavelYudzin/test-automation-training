@@ -1,4 +1,9 @@
-package com.company.automation.classes.main_task;
+package com.company.automation.classes.main_task.view;
+
+import com.company.automation.classes.main_task.entity.Course;
+import com.company.automation.classes.main_task.entity.Faculty;
+import com.company.automation.classes.main_task.entity.Student;
+import com.company.automation.classes.main_task.logic.StudentLogic;
 
 public class StudentView {
     private final StudentLogic studentLogic = StudentLogic.getStudentLogic();
@@ -11,15 +16,12 @@ public class StudentView {
         return studentView;
     }
 
-
     public void printStudentsOfGroup(Student[] students, int group) {
-        int i = 1;
-        Student[] studentsOfGroup = studentLogic.getStudentsOfGroup(students, group);
+        Student[] studentsOfGroup = studentLogic.getSortedStudentsOfGroup(students, group);
         System.out.println("Group " + group + ":");
         if (studentsOfGroup.length != 0) {
-            for (Student item : studentsOfGroup) {
-                System.out.println(i + ". " + item.getFullName());
-                i++;
+            for (int i = 0; i < studentsOfGroup.length; i++) {
+                System.out.println(i + 1 + ". " + studentsOfGroup[i].getFullName());
             }
         } else {
             System.out.println("Group doesn't exist");
@@ -27,18 +29,15 @@ public class StudentView {
         System.out.println();
     }
 
-    public void printStudentsWhoWereBornAfterYear(Student[] students, int year) {
-        boolean hasYoungerStudents = false;
-        int i = 1;
+    public void printStudentsBornAfterYear(Student[] students, int year) {
+        Student[] studentsBornAfterYear = studentLogic.getStudentsBornAfterYear(students, year);
         System.out.println("Students who were born after year " + year + ":");
-        for (Student item : students) {
-            if (item.getBirthDate().getYear() > year) {
-                hasYoungerStudents = true;
-                System.out.println(i + ". " + item.getFullName() + " (" + item.getBirthDate().getYear() + ")");
-                i++;
+        if (studentsBornAfterYear.length != 0) {
+            for (int i = 0; i < studentsBornAfterYear.length; i++) {
+                System.out.println(i + 1 + ". " + studentsBornAfterYear[i].getFullName() + " (" + studentsBornAfterYear[i].getBirthDate().getYear() +
+                        ")");
             }
-        }
-        if (!hasYoungerStudents) {
+        } else {
             System.out.println("All of the students were born before year " + year);
         }
         System.out.println();
@@ -47,9 +46,9 @@ public class StudentView {
     public void printStudentsOfFaculty(Student[] students, Faculty faculty) {
         Student[] studentsOfFaculty = studentLogic.getStudentsOfFaculty(students, faculty);
         System.out.println(faculty.getName());
-        for (Course item : Course.values()) {
-            Student[] studentsOfCourse = studentLogic.getStudentsOfCourse(studentsOfFaculty, item);
-            printStudentsOfCourse(studentsOfCourse, item);
+        for (Course course : Course.values()) {
+            Student[] studentsOfCourse = studentLogic.getStudentsOfCourse(studentsOfFaculty, course);
+            printStudentsOfCourse(studentsOfCourse, course);
         }
         System.out.println("------------------------------------");
         System.out.println();
@@ -59,23 +58,21 @@ public class StudentView {
         System.out.println("------------------------------------\n" +
                 "          ALL FACULTIES" +
                 "\n------------------------------------");
-        for (Faculty item : Faculty.values()) {
-            printStudentsOfFaculty(students, item);
+        for (Faculty faculty : Faculty.values()) {
+            printStudentsOfFaculty(students, faculty);
         }
     }
 
     private void printStudentsOfCourse(Student[] students, Course course) {
         if (students.length != 0) {
             System.out.println("        " + course.getNumber() + " course: ");
-            int i = 1;
-            for (Student item : students) {
-                System.out.println(i + ". " + item.getFullName() + " (group: " + item.getGroup() + ")");
-                i++;
+            for (int i = 0; i < students.length; i++) {
+                System.out.println(i + 1 + ". " + students[i].getFullName() + " (group: " + students[i].getGroup() + ")");
             }
         }
     }
 
     public void printStudentFullInfo(Student student) {
-        System.out.println(studentLogic.getStudentFullInfo(student));
+        System.out.println(student.getStudentFullInfo());
     }
 }

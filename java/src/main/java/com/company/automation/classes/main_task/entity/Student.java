@@ -1,18 +1,4 @@
-package com.company.automation.classes.main_task;
-
-/*
-Создать классы, спецификации которых приведены ниже. Определить конструкторы и методы setТип(), getТип(), toString().
-Определить дополнительно методы в классе, создающем массив объектов. Задать критерий выбора данных и вывести эти данные на консоль.
-В каждом классе, обладающем информацией, должно быть объявлено несколько конструкторов.
-
-1. Student: id, Фамилия, Имя, Отчество, Дата рождения, Адрес, Телефон, Факультет, Курс, Группа.
-Создать массив объектов. Вывести:
-+ a) список студентов заданного факультета;
-+ b) списки студентов для каждого факультета и курса;
-+ c) список студентов, родившихся после заданного года;
-+ d) список учебной группы.
-
- */
+package com.company.automation.classes.main_task.entity;
 
 import java.time.LocalDate;
 
@@ -28,35 +14,24 @@ public class Student {
     private Course course;
     private Faculty faculty;
 
-    public Student(int id, String firstName, String secondName, String additionalName, int year, int month, int day, String address) {
+    public Student(int id, String firstName, String secondName, String additionalName, LocalDate birthDate, String address) {
         this.id = id;
         this.firstName = firstName;
         this.secondName = secondName;
         this.additionalName = additionalName;
-        this.birthDate = LocalDate.of(year, month, day);
+        this.birthDate = birthDate;
         this.address = address;
     }
 
-    public Student(int id, String firstName, String secondName, String additionalName, int year, int month, int day, String address,
+    public Student(int id, String firstName, String secondName, String additionalName, LocalDate birthDate, String address,
                    String phoneNumber) {
-        this.id = id;
-        this.firstName = firstName;
-        this.secondName = secondName;
-        this.additionalName = additionalName;
-        this.birthDate = LocalDate.of(year, month, day);
-        this.address = address;
+        this(id, firstName, secondName, additionalName, birthDate, address);
         this.phoneNumber = phoneNumber;
     }
 
-    public Student(int id, String firstName, String secondName, String additionalName, int year, int month, int day, String address,
+    public Student(int id, String firstName, String secondName, String additionalName, LocalDate birthDate, String address,
                    String phoneNumber, Course course, int group, Faculty faculty) {
-        this.id = id;
-        this.firstName = firstName;
-        this.secondName = secondName;
-        this.additionalName = additionalName;
-        this.birthDate = LocalDate.of(year, month, day);
-        this.address = address;
-        this.phoneNumber = phoneNumber;
+        this(id, firstName, secondName, additionalName, birthDate, address, phoneNumber);
         this.course = course;
         this.group = group;
         this.faculty = faculty;
@@ -158,11 +133,13 @@ public class Student {
                 '}';
     }
 
-    public static Student[] getArrayOfStudents(Student... student) {
-        return student;
-    }
-
     public String getFullName() {
         return secondName + " " + firstName + " " + additionalName;
+    }
+
+    public String getStudentFullInfo() {
+        return "Id: " + id + ". " + getFullName() + ". Birth date: " + birthDate +
+                "\nAddress: " + address + "\nPhone number: " + phoneNumber + "\n" +
+                faculty.getName() + "\n" + course.getNumber() + " course. Group: " + group + "\n";
     }
 }

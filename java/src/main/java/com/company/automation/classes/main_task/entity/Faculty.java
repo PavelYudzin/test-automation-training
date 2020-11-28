@@ -1,4 +1,4 @@
-package com.company.automation.classes.main_task;
+package com.company.automation.classes.main_task.entity;
 
 public enum Faculty {
     COMPUTER_AIDED_DESIGN("FACULTY OF COMPUTER-AIDED DESIGN"),
