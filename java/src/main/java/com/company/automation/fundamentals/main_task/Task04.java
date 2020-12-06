@@ -34,6 +34,10 @@ public class Task04 {
     private static int multiply(String[] args) {
         int multiply = 1;
 
+        if (args.length == 0) {
+            multiply = 0;
+        }
+
         for (String val : args) {
             multiply *= Integer.parseInt(val);
         }

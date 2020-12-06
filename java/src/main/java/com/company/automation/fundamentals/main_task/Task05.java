@@ -8,11 +8,9 @@ package com.company.automation.fundamentals.main_task;
 import java.util.Scanner;
 
 public class Task05 {
-
     static Scanner in = new Scanner(System.in);
 
     public static void main(String[] args) {
-
         int month;
 
         do {
@@ -66,7 +64,6 @@ public class Task05 {
             in.next();
             System.out.print(message);
         }
-
         return in.nextInt();
     }
 }

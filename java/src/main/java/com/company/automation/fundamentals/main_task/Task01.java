@@ -6,9 +6,11 @@ package com.company.automation.fundamentals.main_task;
 
 public class Task01 {
     public static void main(String[] args) {
-        System.out.print("Hello ");
-        for (int i = 0; i < args.length; i++) {
-            System.out.print(args[i] + " ");
+        StringBuilder stringBuilder = new StringBuilder("Hello, ");
+        for (String element : args) {
+            stringBuilder.append(element)
+                    .append(" ");
         }
+        System.out.println(stringBuilder.toString());
     }
 }

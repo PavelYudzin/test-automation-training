@@ -5,16 +5,13 @@ import com.company.automation.classes.main_task.entity.Faculty;
 import com.company.automation.classes.main_task.entity.Student;
 
 public class StudentLogic {
-    private static StudentLogic studentLogic;
+    private final static StudentLogic STUDENT_LOGIC = new StudentLogic();
 
     private StudentLogic() {
     }
 
     public static StudentLogic getStudentLogic() {
-        if (studentLogic == null) {
-            studentLogic = new StudentLogic();
-        }
-        return studentLogic;
+        return STUDENT_LOGIC;
     }
 
     public static Student[] getArrayOfStudents(Student... student) {
@@ -34,7 +31,7 @@ public class StudentLogic {
         return studentsBornAfterYear;
     }
 
-    public Student[] getSortedStudentsOfGroup(Student[] students, int group) {
+    public Student[] getStudentsOfGroupSortedByFullName(Student[] students, int group) {
         int n = getArraySize(students, group);
         Student[] studentsOfGroup = new Student[n];
         n = 0;
@@ -81,6 +78,8 @@ public class StudentLogic {
                     Student temp = students[j];
                     students[j] = students[j + 1];
                     students[j + 1] = temp;
+                } else {
+                    break;
                 }
             }
         }

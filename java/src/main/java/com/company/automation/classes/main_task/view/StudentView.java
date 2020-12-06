@@ -7,17 +7,17 @@ import com.company.automation.classes.main_task.logic.StudentLogic;
 
 public class StudentView {
     private final StudentLogic studentLogic = StudentLogic.getStudentLogic();
-    private static final StudentView studentView = new StudentView();
+    private static final StudentView STUDENT_VIEW = new StudentView();
 
     private StudentView() {
     }
 
     public static StudentView getStudentView() {
-        return studentView;
+        return STUDENT_VIEW;
     }
 
     public void printStudentsOfGroup(Student[] students, int group) {
-        Student[] studentsOfGroup = studentLogic.getSortedStudentsOfGroup(students, group);
+        Student[] studentsOfGroup = studentLogic.getStudentsOfGroupSortedByFullName(students, group);
         System.out.println("Group " + group + ":");
         if (studentsOfGroup.length != 0) {
             for (int i = 0; i < studentsOfGroup.length; i++) {
