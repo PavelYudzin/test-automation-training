@@ -1,11 +1,12 @@
-package com.company.automation.collections.optional_task.Task02;
+package com.company.automation.collections.optional_task.task02;
 
 /*
 2.   Ввести число, занести его цифры в стек. Вывести число, у которого цифры идут в обратном порядке.
  */
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Scanner;
-import java.util.Stack;
 
 public class Task02 {
     public static void main(String[] args) {
@@ -38,8 +39,8 @@ public class Task02 {
 
     private static int getRevertInteger(int number) {
         char[] digits = Integer.toString(number).toCharArray();
-        Stack<Character> digitsOfInteger = new Stack<>();
-
+        Deque<Character> digitsOfInteger = new ArrayDeque<>();
+        
         for (char element : digits) {
             digitsOfInteger.push(element);
         }

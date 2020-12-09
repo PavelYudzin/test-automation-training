@@ -1,4 +1,4 @@
-package com.company.automation.collections.optional_task.Task04;
+package com.company.automation.collections.optional_task.task04;
 
 import java.util.Comparator;
 
