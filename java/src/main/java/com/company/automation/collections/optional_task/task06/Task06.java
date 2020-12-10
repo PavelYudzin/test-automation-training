@@ -8,18 +8,19 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Task06 {
     private static final String pathToTask = "src\\main\\java\\com\\company\\automation\\collections\\optional_task\\Task06\\";
 
     public static void main(String[] args) {
-        ArrayList<String> arrayListFromFile = getArrayListFromFile();
+        List<String> arrayListFromFile = getArrayListFromFile();
         sortArrayListLexicographically(arrayListFromFile);
         arrayListFromFile.forEach(System.out::println);
     }
 
-    private static ArrayList<String> getArrayListFromFile() {
-        ArrayList<String> listFromFile = new ArrayList<>();
+    private static List<String> getArrayListFromFile() {
+        List<String> listFromFile = new ArrayList<>();
         BufferedReader reader = null;
 
         try {
@@ -43,7 +44,7 @@ public class Task06 {
         return listFromFile;
     }
 
-    private static void sortArrayListLexicographically(ArrayList<String> list) {
+    private static void sortArrayListLexicographically(List<String> list) {
         list.sort(String::compareTo);
     }
 }

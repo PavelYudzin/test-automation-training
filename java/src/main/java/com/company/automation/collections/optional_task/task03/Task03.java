@@ -6,6 +6,7 @@ package com.company.automation.collections.optional_task.task03;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Task03 {
     private static final String PATH = new File("src" + File.separator + "main" + File.separator + "java" + File.separator + "com"
@@ -13,12 +14,12 @@ public class Task03 {
             + "optional_task" + File.separator + "task03" + File.separator + "directory").getAbsolutePath();
 
     public static void main(String[] args) {
-        ArrayList<String> directoryContent =  getDirectoryContent(PATH);
+        List<String> directoryContent =  getDirectoryContent(PATH);
         directoryContent.forEach(System.out::println);
     }
 
-    private static ArrayList<String> getDirectoryContent(String absolutePath) {
-        ArrayList<String> directoryContent = new ArrayList<>();
+    private static List<String> getDirectoryContent(String absolutePath) {
+        List<String> directoryContent = new ArrayList<>();
         File dir = new File(absolutePath);
         File[] files = dir.listFiles();
 
