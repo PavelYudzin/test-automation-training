@@ -3,7 +3,7 @@ package com.company.automation.collections.main_task.Model;
 public enum HelmetType {
     FULL_FACE("full face"), MODULAR("modular"), OPEN_FACE("open face");
 
-    private final String name;
+    private String name;
 
     HelmetType(String name) {
         this.name = name;

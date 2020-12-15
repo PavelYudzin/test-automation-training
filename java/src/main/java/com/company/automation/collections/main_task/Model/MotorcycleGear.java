@@ -3,14 +3,18 @@ package com.company.automation.collections.main_task.Model;
 import java.util.Objects;
 
 public abstract class MotorcycleGear {
-    private final String brand;
-    private final String model;
-    private final double weight;
+    private String brand;
+    private String model;
+    private String material;
+    private String color;
+    private double weight;
     private double price;
 
-    public MotorcycleGear(String brand, String model, double weight, double price) {
+    public MotorcycleGear(String brand, String model, String material, String color, double weight, double price) {
         this.brand = brand;
         this.model = model;
+        this.material = material;
+        this.color = color;
         this.weight = weight;
         this.price = price;
     }
@@ -25,6 +29,14 @@ public abstract class MotorcycleGear {
 
     public String getModel() {
         return model;
+    }
+
+    public String getMaterial() {
+        return material;
+    }
+
+    public String getColor() {
+        return color;
     }
 
     public double getWeight() {
@@ -43,6 +55,8 @@ public abstract class MotorcycleGear {
                 '[' +
                 "brand = " + brand +
                 ", model = " + model +
+                ", material = " + material +
+                ", color = " + color +
                 ", weight = " + weight +
                 ", price = " + price +
                 ']';
@@ -54,14 +68,16 @@ public abstract class MotorcycleGear {
         if (!(o instanceof MotorcycleGear)) return false;
 
         MotorcycleGear motorcycleGear = (MotorcycleGear) o;
-        return  brand.equals(motorcycleGear.brand) &&
+        return brand.equals(motorcycleGear.brand) &&
                 model.equals(motorcycleGear.model) &&
+                material.equals(motorcycleGear.material) &&
+                color.equals(motorcycleGear.color) &&
                 weight == motorcycleGear.weight &&
                 price == motorcycleGear.price;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(brand, model, weight, price);
+        return Objects.hash(brand, model, material, color, weight, price);
     }
 }

@@ -3,11 +3,11 @@ package com.company.automation.collections.main_task.Model;
 import java.util.Objects;
 
 public class Helmet extends MotorcycleGear {
-    private final GearType gearType = GearType.HELMET;
-    private final HelmetType helmetType;
+    private GearType gearType = GearType.HELMET;
+    private HelmetType helmetType;
 
-    public Helmet(String brand, String model, HelmetType helmetType, double weight, double price) {
-        super(brand, model, weight, price);
+    public Helmet(String brand, String model, HelmetType helmetType, String material, String color, double weight, double price) {
+        super(brand, model, color, material, weight, price);
         this.helmetType = helmetType;
     }
 
@@ -19,13 +19,16 @@ public class Helmet extends MotorcycleGear {
         return helmetType;
     }
 
+
     public String getDescription() {
         return "Helmet " +
                 getBrand() + " " +
                 getModel() + ":\n" +
                 "type - " + helmetType.getName() +
+                ", material - " + getMaterial() +
+                ", color - " + getColor() +
                 ", weight - " + getWeight() +
-                ", price - " + getPrice();
+                " kg, price - $" + getPrice();
 
     }
 
@@ -42,6 +45,7 @@ public class Helmet extends MotorcycleGear {
         if (this == o) return true;
         if (!(o instanceof Helmet)) return false;
         if (!super.equals(o)) return false;
+
         Helmet helmet = (Helmet) o;
         return gearType == helmet.gearType &&
                 helmetType == helmet.helmetType;
