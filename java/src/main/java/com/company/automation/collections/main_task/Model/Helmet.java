@@ -7,7 +7,7 @@ public class Helmet extends MotorcycleGear {
     private HelmetType helmetType;
 
     public Helmet(String brand, String model, HelmetType helmetType, String material, String color, double weight, double price) {
-        super(brand, model, color, material, weight, price);
+        super(brand, model, material, color, weight, price);
         this.helmetType = helmetType;
     }
 
