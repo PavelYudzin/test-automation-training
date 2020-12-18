@@ -11,6 +11,7 @@ public class Helmet extends MotorcycleGear {
         this.helmetType = helmetType;
     }
 
+    @Override
     public GearType getGearType() {
         return gearType;
     }
@@ -37,7 +38,7 @@ public class Helmet extends MotorcycleGear {
         return super.toString().replace("]", ", ") +
                 "gearType = " + gearType +
                 ", helmetType = " + helmetType +
-                ']';
+                "]\n";
     }
 
     @Override

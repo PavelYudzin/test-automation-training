@@ -11,6 +11,7 @@ public class Boots extends MotorcycleGear {
         this.bootsType = bootsType;
     }
 
+    @Override
     public GearType getGearType() {
         return gearType;
     }
@@ -35,8 +36,8 @@ public class Boots extends MotorcycleGear {
     public String toString() {
         return super.toString().replace("]", ", ") +
                 "gearType = " + gearType +
-                "glovesType = " + bootsType +
-                ']';
+                ", glovesType = " + bootsType +
+                "]\n";
     }
 
     @Override

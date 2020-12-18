@@ -48,6 +48,7 @@ public abstract class MotorcycleGear {
     }
 
     public abstract String getDescription();
+    public abstract GearType getGearType();
 
     @Override
     public String toString() {

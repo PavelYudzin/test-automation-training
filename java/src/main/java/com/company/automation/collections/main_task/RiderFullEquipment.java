@@ -1,17 +1,46 @@
 package com.company.automation.collections.main_task;
 
+import com.company.automation.collections.main_task.Model.GearType;
 import com.company.automation.collections.main_task.Model.MotorcycleGear;
 
-import java.util.List;
+import java.util.EnumMap;
 
 public class RiderFullEquipment {
-    private List<? extends MotorcycleGear> riderFullEquipment;
+    private EnumMap<GearType, MotorcycleGear> fullEquipment = new EnumMap<GearType, MotorcycleGear>(GearType.class);
 
-    public RiderFullEquipment(List<? extends MotorcycleGear> riderFullEquipment) {
-        this.riderFullEquipment = riderFullEquipment;
+    public RiderFullEquipment() {
     }
 
-    public List<? extends MotorcycleGear> getRiderFullEquipment() {
-        return riderFullEquipment;
+    public RiderFullEquipment(MotorcycleGear... motorcycleGears) {
+        this.addGear(motorcycleGears);
     }
+
+    public EnumMap<GearType, MotorcycleGear> getFullEquipment() {
+        return fullEquipment;
+    }
+
+    public EnumMap<GearType, MotorcycleGear> addGear(MotorcycleGear... motorcycleGear) {
+        for (MotorcycleGear element : motorcycleGear) {
+
+            switch (element.getGearType()) {
+                case HELMET:
+                    fullEquipment.put(GearType.HELMET, element);
+                    break;
+                case JACKET:
+                    fullEquipment.put(GearType.JACKET, element);
+                    break;
+                case PANTS:
+                    fullEquipment.put(GearType.PANTS, element);
+                    break;
+                case BOOTS:
+                    fullEquipment.put(GearType.BOOTS, element);
+                    break;
+                case GLOVES:
+                    fullEquipment.put(GearType.GLOVES, element);
+                    break;
+            }
+        }
+        return fullEquipment;
+    }
+
 }

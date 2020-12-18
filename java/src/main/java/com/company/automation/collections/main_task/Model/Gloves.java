@@ -11,6 +11,7 @@ public class Gloves extends MotorcycleGear {
         this.glovesType = glovesType;
     }
 
+    @Override
     public GearType getGearType() {
         return gearType;
     }
@@ -35,8 +36,8 @@ public class Gloves extends MotorcycleGear {
     public String toString() {
         return super.toString().replace("]", ", ") +
                 "gearType = " + gearType +
-                "glovesType = " + glovesType +
-                ']';
+                ", glovesType = " + glovesType +
+                "]\n";
     }
 
     @Override

@@ -11,6 +11,7 @@ public class Jacket extends MotorcycleGear {
         this.gender = gender;
     }
 
+    @Override
     public GearType getGearType() {
         return gearType;
     }
@@ -36,7 +37,7 @@ public class Jacket extends MotorcycleGear {
         return super.toString().replace("]", ", ") +
                 "gearType = " + gearType +
                 ", gender = " + gender +
-                ']';
+                "]\n";
     }
 
     @Override
