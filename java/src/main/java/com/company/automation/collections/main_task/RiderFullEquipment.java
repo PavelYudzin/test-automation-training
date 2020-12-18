@@ -3,10 +3,10 @@ package com.company.automation.collections.main_task;
 import com.company.automation.collections.main_task.Model.GearType;
 import com.company.automation.collections.main_task.Model.MotorcycleGear;
 
-import java.util.EnumMap;
+import java.util.*;
 
 public class RiderFullEquipment {
-    private EnumMap<GearType, MotorcycleGear> fullEquipment = new EnumMap<GearType, MotorcycleGear>(GearType.class);
+    private final EnumMap<GearType, MotorcycleGear> fullEquipment = new EnumMap<>(GearType.class);
 
     public RiderFullEquipment() {
     }
@@ -19,7 +19,7 @@ public class RiderFullEquipment {
         return fullEquipment;
     }
 
-    public EnumMap<GearType, MotorcycleGear> addGear(MotorcycleGear... motorcycleGear) {
+    public void addGear(MotorcycleGear... motorcycleGear) {
         for (MotorcycleGear element : motorcycleGear) {
 
             switch (element.getGearType()) {
@@ -40,7 +40,41 @@ public class RiderFullEquipment {
                     break;
             }
         }
-        return fullEquipment;
     }
 
+    Iterator<Map.Entry<GearType, MotorcycleGear>> iterator = fullEquipment.entrySet().iterator();
+
+    public double getFullPrice() {
+        double fullPrice = 0;
+
+        while (iterator.hasNext()) {
+            fullPrice += iterator.next().getValue().getPrice();
+        }
+        resetIterator();
+        return fullPrice;
+    }
+
+    public List<MotorcycleGear> sortByWeight() {
+        List<MotorcycleGear> equipmentSortedByWeight = new ArrayList<>(fullEquipment.values());
+        equipmentSortedByWeight.sort(Comparator.comparingDouble(MotorcycleGear::getWeight));
+        return equipmentSortedByWeight;
+    }
+
+    public List<MotorcycleGear> findByPrice(double from, double to) {
+        List<MotorcycleGear> matches = new ArrayList<>();
+
+        while (iterator.hasNext()) {
+            MotorcycleGear current = iterator.next().getValue();
+            double price = current.getPrice();
+            if (price >= from && price <= to) {
+                matches.add(current);
+            }
+        }
+        resetIterator();
+        return matches;
+    }
+
+    private void resetIterator() {
+        iterator = fullEquipment.entrySet().iterator();
+    }
 }
