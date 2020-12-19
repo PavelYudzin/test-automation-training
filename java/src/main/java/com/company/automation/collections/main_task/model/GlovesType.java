@@ -1,4 +1,4 @@
-package com.company.automation.collections.main_task.Model;
+package com.company.automation.collections.main_task.model;
 
 public enum GlovesType {
     FINGERLESS("fingerless"), GAUNTLET("gauntlet"), SHORT_CUFF("short cuff");

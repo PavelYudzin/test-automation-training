@@ -1,7 +1,7 @@
 package com.company.automation.collections.main_task;
 
-import com.company.automation.collections.main_task.Model.GearType;
-import com.company.automation.collections.main_task.Model.MotorcycleGear;
+import com.company.automation.collections.main_task.model.GearType;
+import com.company.automation.collections.main_task.model.MotorcycleGear;
 
 import java.util.*;
 
@@ -15,8 +15,8 @@ public class RiderFullEquipment {
         this.addGear(motorcycleGears);
     }
 
-    public EnumMap<GearType, MotorcycleGear> getFullEquipment() {
-        return fullEquipment;
+    public List<MotorcycleGear> getFullEquipment() {
+        return new ArrayList<>(fullEquipment.values());
     }
 
     public void addGear(MotorcycleGear... motorcycleGear) {

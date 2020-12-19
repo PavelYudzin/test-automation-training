@@ -1,14 +1,14 @@
-package com.company.automation.collections.main_task.Model;
+package com.company.automation.collections.main_task.model;
 
 import java.util.Objects;
 
-public class Gloves extends MotorcycleGear {
-    private GearType gearType = GearType.GLOVES;
-    private GlovesType glovesType;
+public class Boots extends MotorcycleGear {
+    private GearType gearType = GearType.BOOTS;
+    private BootsType bootsType;
 
-    public Gloves(String brand, String model, GlovesType glovesType, String material, String color, double weight, double price) {
+    public Boots(String brand, String model, BootsType bootsType, String material, String color, double weight, double price) {
         super(brand, model, material, color, weight, price);
-        this.glovesType = glovesType;
+        this.bootsType = bootsType;
     }
 
     @Override
@@ -16,16 +16,16 @@ public class Gloves extends MotorcycleGear {
         return gearType;
     }
 
-    public GlovesType getGlovesType() {
-        return glovesType;
+    public BootsType getBootsType() {
+        return bootsType;
     }
 
     @Override
     public String getDescription() {
-        return "Gloves " +
+        return "Boots " +
                 getBrand() + " " +
                 getModel() + ":\n" +
-                "type - " + glovesType.getName() +
+                "type - " + bootsType.getName() +
                 ", material - " + getMaterial() +
                 ", color - " + getColor() +
                 ", weight - " + getWeight() +
@@ -36,23 +36,23 @@ public class Gloves extends MotorcycleGear {
     public String toString() {
         return super.toString().replace("]", ", ") +
                 "gearType = " + gearType +
-                ", glovesType = " + glovesType +
+                ", glovesType = " + bootsType +
                 "]\n";
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Gloves)) return false;
+        if (!(o instanceof Boots)) return false;
         if (!super.equals(o)) return false;
 
-        Gloves gloves = (Gloves) o;
-        return gearType == gloves.gearType &&
-                glovesType == gloves.glovesType;
+        Boots boots = (Boots) o;
+        return gearType == boots.gearType &&
+                bootsType == boots.bootsType;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), gearType, glovesType);
+        return Objects.hash(super.hashCode(), gearType, bootsType);
     }
 }

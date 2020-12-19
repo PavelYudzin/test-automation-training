@@ -1,4 +1,4 @@
-package com.company.automation.collections.main_task.Model;
+package com.company.automation.collections.main_task.model;
 
 import java.util.Objects;
 

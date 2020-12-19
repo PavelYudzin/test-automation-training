@@ -1,6 +1,6 @@
 package com.company.automation.collections.main_task;
 
-import com.company.automation.collections.main_task.Model.*;
+import com.company.automation.collections.main_task.model.*;
 
 import java.util.List;
 
@@ -25,6 +25,9 @@ public class Runner {
 
         List<MotorcycleGear> suitablePrice = riderFullEquipment.findByPrice(200, 300);
         System.out.println("\nSUITABLE PRICE\n" + suitablePrice);
+
+        Menu menu = new Menu(riderFullEquipment);
+        menu.startMenu();
 
     }
 }

@@ -1,4 +1,4 @@
-package com.company.automation.collections.main_task.Model;
+package com.company.automation.collections.main_task.model;
 
 public enum BootsType {
     SPORT("sport"), CRUISING("cruising"), ADVENTURE("adventure"), STREET("street");

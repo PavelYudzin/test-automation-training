@@ -1,12 +1,12 @@
-package com.company.automation.collections.main_task.Model;
+package com.company.automation.collections.main_task.model;
 
 import java.util.Objects;
 
-public class Jacket extends MotorcycleGear {
-    private GearType gearType = GearType.JACKET;
+public class Pants extends MotorcycleGear {
+    private GearType gearType = GearType.PANTS;
     private Gender gender;
 
-    public Jacket(Gender gender, String brand, String model, String material, String color, double weight, double price) {
+    public Pants(Gender gender, String brand, String model, String material, String color, double weight, double price) {
         super(brand, model, material, color, weight, price);
         this.gender = gender;
     }
@@ -23,7 +23,7 @@ public class Jacket extends MotorcycleGear {
     @Override
     public String getDescription() {
         return (gender == Gender.WOMAN ? "Women's " : "Men's ") +
-                "Jacket " +
+                "Pants " +
                 getBrand() + " " +
                 getModel() + ":\n" +
                 "material - " + getMaterial() +
@@ -43,12 +43,12 @@ public class Jacket extends MotorcycleGear {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Jacket)) return false;
+        if (!(o instanceof Pants)) return false;
         if (!super.equals(o)) return false;
 
-        Jacket jacket = (Jacket) o;
-        return gearType == jacket.gearType &&
-                gender == jacket.gender;
+        Pants pants = (Pants) o;
+        return gearType == pants.gearType &&
+                gender == pants.gender;
     }
 
     @Override
