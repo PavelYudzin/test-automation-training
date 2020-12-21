@@ -20,11 +20,15 @@ public class Helmet extends MotorcycleGear {
         return helmetType;
     }
 
-
-    public String getDescription() {
+    @Override
+    public String getFullName() {
         return "Helmet " +
                 getBrand() + " " +
-                getModel() + ":\n" +
+                getModel();
+    }
+
+    public String getDescription() {
+        return getFullName() + ":\n" +
                 "type - " + helmetType.getName() +
                 ", material - " + getMaterial() +
                 ", color - " + getColor() +

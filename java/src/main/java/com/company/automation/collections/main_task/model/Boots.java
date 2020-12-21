@@ -21,10 +21,15 @@ public class Boots extends MotorcycleGear {
     }
 
     @Override
-    public String getDescription() {
+    public String getFullName() {
         return "Boots " +
                 getBrand() + " " +
-                getModel() + ":\n" +
+                getModel();
+    }
+
+    @Override
+    public String getDescription() {
+        return getFullName() + ":\n" +
                 "type - " + bootsType.getName() +
                 ", material - " + getMaterial() +
                 ", color - " + getColor() +

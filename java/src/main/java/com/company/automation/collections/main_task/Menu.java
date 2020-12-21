@@ -2,16 +2,17 @@ package com.company.automation.collections.main_task;
 
 import com.company.automation.collections.main_task.model.MotorcycleGear;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Menu {
-    private final List<MotorcycleGear> fullEquipment;
+    private final RiderFullEquipment riderFullEquipment;
+    private final List<MotorcycleGear> fullEquipment = new ArrayList<>();
     Scanner input = new Scanner(System.in);
 
+
     public Menu(RiderFullEquipment riderFullEquipment) {
-        fullEquipment = riderFullEquipment.getFullEquipment();
+        this.riderFullEquipment = riderFullEquipment;
+        fullEquipment.addAll(riderFullEquipment.getFullEquipment().values());
     }
 
     public void startMenu() {
@@ -35,17 +36,17 @@ public class Menu {
 
         switch (option) {
             case 1:
-                showEquipment();
+                showEquipmentMenu();
                 break;
             case 2:
-                showFullPrice();
+                showFullPriceMenu();
                 break;
-//            case 3:
-//                sortByWeight();
-//                break;
-//            case 4:
-//                findByPriceRange();
-//                break;
+            case 3:
+                sortByWeightMenu();
+                break;
+            case 4:
+                findByPriceRange();
+                break;
             case 0:
                 System.exit(0);
         }
@@ -61,7 +62,8 @@ public class Menu {
     }
 
     private void pressEnter() {
-        System.out.print("PRESS ENTER");
+        System.out.println();
+        System.out.print("PRESS ENTER: >> ");
         input.nextLine();
         String a = input.nextLine();
         System.out.println();
@@ -71,14 +73,60 @@ public class Menu {
         return option >= 0 && option <= optionsQuantity;
     }
 
-    private void showEquipment() {
-        fullEquipment.forEach((e) -> System.out.println(e.getDescription() + "\n"));
+    private void showEquipmentMenu() {
+        fullEquipment.forEach((e) -> System.out.printf("%s%n----------%n", e.getDescription()));
         pressEnter();
         startMenu();
     }
 
-    private void showFullPrice() {
-
+    private void showFullPriceMenu() {
+        System.out.println("Full price");
+        System.out.println("----------");
+        fullEquipment.forEach((e) -> System.out.printf("%-50s %10.2f$%n", e.getFullName(), e.getPrice()));
+        System.out.printf("%43s ------------------%n", "");
+        System.out.printf("%50s %10.2f$%n", "TOTAL:", riderFullEquipment.getFullPrice());
+        pressEnter();
+        startMenu();
     }
 
+    private void sortByWeightMenu() {
+        List<MotorcycleGear> sortedByWeight = riderFullEquipment.sortByWeight();
+        System.out.println("Sorted by weight");
+        System.out.println("----------------");
+        sortedByWeight.forEach((e) -> System.out.printf("%-50s %10.3f kg%n", e.getFullName(), e.getWeight()));
+        pressEnter();
+        startMenu();
+    }
+
+    private void findByPriceRange() {
+        int from;
+        int to;
+        String messageFrom = "Input MIN price(integer number): >> ";
+        String messageTo = "Input MAX price(integer number): >> ";
+
+        do {
+            from = input(messageFrom);
+            to = input(messageTo);
+        } while (!verifyPrice(from, to));
+
+        System.out.println("\n$" + from + " - " + to);
+        List<MotorcycleGear> suitableEquipment = riderFullEquipment.findByPriceRange(from, to);
+
+        if(suitableEquipment.size() != 0) {
+            suitableEquipment.sort(Comparator.comparingDouble(MotorcycleGear::getPrice));
+            suitableEquipment.forEach((e) -> System.out.printf("%-50s %10.2f$%n", e.getFullName(), e.getPrice()));
+        } else {
+            System.out.println("There are no gears in this range");
+        }
+        pressEnter();
+        startMenu();
+    }
+
+    private boolean verifyPrice(int from, int to) {
+        boolean verification = (from >= 0 && to >= 0) && (from <= to);
+        if(!verification) {
+            System.out.println("\nWRONG price range!!!\n");
+        }
+        return verification;
+    }
 }

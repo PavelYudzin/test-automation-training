@@ -21,11 +21,16 @@ public class Jacket extends MotorcycleGear {
     }
 
     @Override
-    public String getDescription() {
+    public String getFullName() {
         return (gender == Gender.WOMAN ? "Women's " : "Men's ") +
                 "Jacket " +
                 getBrand() + " " +
-                getModel() + ":\n" +
+                getModel();
+    }
+
+    @Override
+    public String getDescription() {
+        return getFullName() + ":\n" +
                 "material - " + getMaterial() +
                 ", color - " + getColor() +
                 ", weight - " + getWeight() +

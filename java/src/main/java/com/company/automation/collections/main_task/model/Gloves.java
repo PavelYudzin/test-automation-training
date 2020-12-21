@@ -21,10 +21,15 @@ public class Gloves extends MotorcycleGear {
     }
 
     @Override
-    public String getDescription() {
+    public String getFullName() {
         return "Gloves " +
                 getBrand() + " " +
-                getModel() + ":\n" +
+                getModel();
+    }
+
+    @Override
+    public String getDescription() {
+        return getFullName() + ":\n" +
                 "type - " + glovesType.getName() +
                 ", material - " + getMaterial() +
                 ", color - " + getColor() +

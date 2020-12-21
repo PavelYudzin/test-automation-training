@@ -15,8 +15,8 @@ public class RiderFullEquipment {
         this.addGear(motorcycleGears);
     }
 
-    public List<MotorcycleGear> getFullEquipment() {
-        return new ArrayList<>(fullEquipment.values());
+    public EnumMap<GearType, MotorcycleGear> getFullEquipment() {
+        return fullEquipment;
     }
 
     public void addGear(MotorcycleGear... motorcycleGear) {
@@ -60,7 +60,7 @@ public class RiderFullEquipment {
         return equipmentSortedByWeight;
     }
 
-    public List<MotorcycleGear> findByPrice(double from, double to) {
+    public List<MotorcycleGear> findByPriceRange(int from, int to) {
         List<MotorcycleGear> matches = new ArrayList<>();
 
         while (iterator.hasNext()) {

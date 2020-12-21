@@ -47,6 +47,7 @@ public abstract class MotorcycleGear {
         return price;
     }
 
+    public abstract String getFullName();
     public abstract String getDescription();
     public abstract GearType getGearType();
 
