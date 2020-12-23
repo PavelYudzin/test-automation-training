@@ -3,8 +3,8 @@ package com.company.automation.collections.main_task.model;
 import java.util.Objects;
 
 public class Pants extends MotorcycleGear {
-    private GearType gearType = GearType.PANTS;
-    private Gender gender;
+    private final GearType gearType = GearType.PANTS;
+    private final Gender gender;
 
     public Pants(Gender gender, String brand, String model, String material, String color, double weight, double price) {
         super(brand, model, material, color, weight, price);

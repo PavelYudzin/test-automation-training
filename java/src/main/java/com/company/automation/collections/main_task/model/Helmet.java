@@ -3,8 +3,8 @@ package com.company.automation.collections.main_task.model;
 import java.util.Objects;
 
 public class Helmet extends MotorcycleGear {
-    private GearType gearType = GearType.HELMET;
-    private HelmetType helmetType;
+    private final GearType gearType = GearType.HELMET;
+    private final HelmetType helmetType;
 
     public Helmet(String brand, String model, HelmetType helmetType, String material, String color, double weight, double price) {
         super(brand, model, material, color, weight, price);
@@ -34,7 +34,6 @@ public class Helmet extends MotorcycleGear {
                 ", color - " + getColor() +
                 ", weight - " + getWeight() +
                 " kg, price - $" + getPrice();
-
     }
 
     @Override

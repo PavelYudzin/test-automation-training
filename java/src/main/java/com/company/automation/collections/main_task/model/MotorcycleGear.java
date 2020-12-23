@@ -3,11 +3,11 @@ package com.company.automation.collections.main_task.model;
 import java.util.Objects;
 
 public abstract class MotorcycleGear {
-    private String brand;
-    private String model;
-    private String material;
-    private String color;
-    private double weight;
+    private final String brand;
+    private final String model;
+    private final String material;
+    private final String color;
+    private final double weight;
     private double price;
 
     public MotorcycleGear(String brand, String model, String material, String color, double weight, double price) {
@@ -48,7 +48,9 @@ public abstract class MotorcycleGear {
     }
 
     public abstract String getFullName();
+
     public abstract String getDescription();
+
     public abstract GearType getGearType();
 
     @Override

@@ -7,7 +7,7 @@ import java.util.*;
 public class Menu {
     private final RiderFullEquipment riderFullEquipment;
     private final List<MotorcycleGear> fullEquipment = new ArrayList<>();
-    Scanner input = new Scanner(System.in);
+    private final Scanner input = new Scanner(System.in);
 
 
     public Menu(RiderFullEquipment riderFullEquipment) {
@@ -112,7 +112,7 @@ public class Menu {
         System.out.println("\n$" + from + " - " + to);
         List<MotorcycleGear> suitableEquipment = riderFullEquipment.findByPriceRange(from, to);
 
-        if(suitableEquipment.size() != 0) {
+        if (suitableEquipment.size() != 0) {
             suitableEquipment.sort(Comparator.comparingDouble(MotorcycleGear::getPrice));
             suitableEquipment.forEach((e) -> System.out.printf("%-50s %10.2f$%n", e.getFullName(), e.getPrice()));
         } else {
@@ -124,7 +124,7 @@ public class Menu {
 
     private boolean verifyPrice(int from, int to) {
         boolean verification = (from >= 0 && to >= 0) && (from <= to);
-        if(!verification) {
+        if (!verification) {
             System.out.println("\nWRONG price range!!!\n");
         }
         return verification;

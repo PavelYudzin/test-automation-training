@@ -14,6 +14,5 @@ public class Runner {
 
         Menu menu = new Menu(riderFullEquipment);
         menu.startMenu();
-
     }
 }

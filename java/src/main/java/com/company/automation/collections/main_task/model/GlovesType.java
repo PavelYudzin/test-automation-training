@@ -3,7 +3,7 @@ package com.company.automation.collections.main_task.model;
 public enum GlovesType {
     FINGERLESS("fingerless"), GAUNTLET("gauntlet"), SHORT_CUFF("short cuff");
 
-    private String name;
+    private final String name;
 
     GlovesType(String name) {
         this.name = name;
