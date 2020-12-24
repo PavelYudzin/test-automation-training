@@ -18,7 +18,6 @@ public class Task02 {
     }
 
     private static String inputInteger() {
-        String line;
         String message = "Input integer number:>> ";
         System.out.print(message);
         Scanner input = new Scanner(System.in);
@@ -28,8 +27,7 @@ public class Task02 {
             input.nextLine();
         }
 
-        line = input.nextLine();
-        return line;
+        return input.next();
     }
 
     private static int getInteger() {
