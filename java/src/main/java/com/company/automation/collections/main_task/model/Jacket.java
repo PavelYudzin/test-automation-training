@@ -3,12 +3,13 @@ package com.company.automation.collections.main_task.model;
 import java.util.Objects;
 
 public class Jacket extends MotorcycleGear {
-    private final GearType gearType = GearType.JACKET;
+    private final GearType gearType;
     private final Gender gender;
 
     public Jacket(Gender gender, String brand, String model, String material, String color, double weight, double price) {
         super(brand, model, material, color, weight, price);
         this.gender = gender;
+        gearType = GearType.JACKET;
     }
 
     @Override

@@ -3,12 +3,13 @@ package com.company.automation.collections.main_task.model;
 import java.util.Objects;
 
 public class Boots extends MotorcycleGear {
-    private GearType gearType = GearType.BOOTS;
-    private BootsType bootsType;
+    private final GearType gearType;
+    private final BootsType bootsType;
 
     public Boots(String brand, String model, BootsType bootsType, String material, String color, double weight, double price) {
         super(brand, model, material, color, weight, price);
         this.bootsType = bootsType;
+        gearType = GearType.BOOTS;
     }
 
     @Override

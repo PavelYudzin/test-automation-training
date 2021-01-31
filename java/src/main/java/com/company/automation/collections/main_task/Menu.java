@@ -1,21 +1,14 @@
 package com.company.automation.collections.main_task;
 
-import com.company.automation.collections.main_task.model.MotorcycleGear;
+import com.company.automation.collections.main_task.verification.MenuVerification;
+import com.company.automation.collections.main_task.view.EquipmentView;
 
-import java.util.*;
+import java.util.Scanner;
 
 public class Menu {
-    private final RiderFullEquipment riderFullEquipment;
-    private final List<MotorcycleGear> fullEquipment = new ArrayList<>();
-    private final Scanner input = new Scanner(System.in);
+    private static final Scanner input = new Scanner(System.in);
 
-
-    public Menu(RiderFullEquipment riderFullEquipment) {
-        this.riderFullEquipment = riderFullEquipment;
-        fullEquipment.addAll(riderFullEquipment.getFullEquipment().values());
-    }
-
-    public void startMenu() {
+    public static void startMenu(RiderFullEquipment riderFullEquipment) {
         String message = "Choose option: >> ";
         int option;
         int optionsQuantity = 4;
@@ -31,28 +24,28 @@ public class Menu {
 
         do {
             option = input(message);
-        } while (!verifyInput(option, optionsQuantity));
+        } while (!MenuVerification.verifyInput(option, optionsQuantity));
         System.out.println();
 
         switch (option) {
             case 1:
-                showEquipmentMenu();
+                showEquipmentOption(riderFullEquipment);
                 break;
             case 2:
-                showFullPriceMenu();
+                showFullPriceOption(riderFullEquipment);
                 break;
             case 3:
-                sortByWeightMenu();
+                sortByWeightOption(riderFullEquipment);
                 break;
             case 4:
-                findByPriceRange();
+                findByPriceRange(riderFullEquipment);
                 break;
             case 0:
                 System.exit(0);
         }
     }
 
-    private int input(String message) {
+    private static int input(String message) {
         System.out.print(message);
         while (!input.hasNextInt()) {
             System.out.print(message);
@@ -61,7 +54,7 @@ public class Menu {
         return Integer.parseInt(input.next());
     }
 
-    private void pressEnter() {
+    private static void pressEnter() {
         System.out.println();
         System.out.print("PRESS ENTER: >> ");
         input.nextLine();
@@ -69,36 +62,25 @@ public class Menu {
         System.out.println();
     }
 
-    private boolean verifyInput(int option, int optionsQuantity) {
-        return option >= 0 && option <= optionsQuantity;
-    }
-
-    private void showEquipmentMenu() {
-        fullEquipment.forEach((e) -> System.out.printf("%s%n----------%n", e.getDescription()));
+    private static void showEquipmentOption(RiderFullEquipment riderFullEquipment) {
+        EquipmentView.printEquipment(riderFullEquipment);
         pressEnter();
-        startMenu();
+        startMenu(riderFullEquipment);
     }
 
-    private void showFullPriceMenu() {
-        System.out.println("Full price");
-        System.out.println("----------");
-        fullEquipment.forEach((e) -> System.out.printf("%-50s %10.2f$%n", e.getFullName(), e.getPrice()));
-        System.out.printf("%43s ------------------%n", "");
-        System.out.printf("%50s %10.2f$%n", "TOTAL:", riderFullEquipment.getFullPrice());
+    private static void showFullPriceOption(RiderFullEquipment riderFullEquipment) {
+        EquipmentView.printFullPrice(riderFullEquipment);
         pressEnter();
-        startMenu();
+        startMenu(riderFullEquipment);
     }
 
-    private void sortByWeightMenu() {
-        List<MotorcycleGear> sortedByWeight = riderFullEquipment.sortByWeight();
-        System.out.println("Sorted by weight");
-        System.out.println("----------------");
-        sortedByWeight.forEach((e) -> System.out.printf("%-50s %10.3f kg%n", e.getFullName(), e.getWeight()));
+    private static void sortByWeightOption(RiderFullEquipment riderFullEquipment) {
+        EquipmentView.printSortedByWeight(riderFullEquipment);
         pressEnter();
-        startMenu();
+        startMenu(riderFullEquipment);
     }
 
-    private void findByPriceRange() {
+    private static void findByPriceRange(RiderFullEquipment riderFullEquipment) {
         int from;
         int to;
         String messageFrom = "Input MIN price(integer number): >> ";
@@ -107,26 +89,11 @@ public class Menu {
         do {
             from = input(messageFrom);
             to = input(messageTo);
-        } while (!verifyPrice(from, to));
+        } while (!MenuVerification.verifyPriceRange(from, to));
 
-        System.out.println("\n$" + from + " - " + to);
-        List<MotorcycleGear> suitableEquipment = riderFullEquipment.findByPriceRange(from, to);
+        EquipmentView.printSortedByPriceRange(riderFullEquipment, from, to);
 
-        if (suitableEquipment.size() != 0) {
-            suitableEquipment.sort(Comparator.comparingDouble(MotorcycleGear::getPrice));
-            suitableEquipment.forEach((e) -> System.out.printf("%-50s %10.2f$%n", e.getFullName(), e.getPrice()));
-        } else {
-            System.out.println("There are no gears in this range");
-        }
         pressEnter();
-        startMenu();
-    }
-
-    private boolean verifyPrice(int from, int to) {
-        boolean verification = (from >= 0 && to >= 0) && (from <= to);
-        if (!verification) {
-            System.out.println("\nWRONG price range!!!\n");
-        }
-        return verification;
+        startMenu(riderFullEquipment);
     }
 }

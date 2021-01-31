@@ -12,7 +12,6 @@ public class Runner {
 
         RiderFullEquipment riderFullEquipment = new RiderFullEquipment(helmet, jacket, pants, boots, gloves);
 
-        Menu menu = new Menu(riderFullEquipment);
-        menu.startMenu();
+        Menu.startMenu(riderFullEquipment);
     }
 }

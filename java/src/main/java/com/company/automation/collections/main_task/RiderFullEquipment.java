@@ -3,7 +3,12 @@ package com.company.automation.collections.main_task;
 import com.company.automation.collections.main_task.model.GearType;
 import com.company.automation.collections.main_task.model.MotorcycleGear;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.EnumMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 public class RiderFullEquipment {
     private final EnumMap<GearType, MotorcycleGear> fullEquipment = new EnumMap<>(GearType.class);
@@ -60,7 +65,7 @@ public class RiderFullEquipment {
         return equipmentSortedByWeight;
     }
 
-    public List<MotorcycleGear> findByPriceRange(int from, int to) {
+    public List<MotorcycleGear> findByPriceRange(double from, double to) {
         List<MotorcycleGear> matches = new ArrayList<>();
 
         while (iterator.hasNext()) {
@@ -71,7 +76,18 @@ public class RiderFullEquipment {
             }
         }
         resetIterator();
+        sortByPrice(matches);
         return matches;
+    }
+
+    public List<MotorcycleGear> sortByPrice() {
+        List<MotorcycleGear> equipmentSortedByPrice = new ArrayList<>(fullEquipment.values());
+        equipmentSortedByPrice.sort(Comparator.comparingDouble(MotorcycleGear::getPrice));
+        return equipmentSortedByPrice;
+    }
+
+    private void sortByPrice(List<MotorcycleGear> equipment) {
+        equipment.sort(Comparator.comparingDouble(MotorcycleGear::getPrice));
     }
 
     private void resetIterator() {
