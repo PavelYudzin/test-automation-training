@@ -4,7 +4,9 @@ package com.company.automation.collections.optional_task.task05;
     5. 	Не используя вспомогательных объектов, переставить отрицательные элементы данного списка в конец, а положительные — в начало списка.
  */
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 
 public class Task05 {
     public static void main(String[] args) {

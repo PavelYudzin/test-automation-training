@@ -4,62 +4,55 @@ package com.company.automation.collections.optional_task.task01;
     1.   Ввести строки из файла, записать в список. Вывести строки в файл в обратном порядке.
  */
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Task01 {
-    private static final String pathToTask = "src\\main\\java\\com\\company\\automation\\collections\\optional_task\\Task01\\";
+    private static final String PATH_TO_TASK = "src" + File.separator + "main" + File.separator + "java" + File.separator + "com" + File.separator +
+            "company" + File.separator + "automation" + File.separator + "collections" + File.separator + "optional_task" + File.separator + "Task01" +
+            File.separator;
 
     public static void main(String[] args) {
-        List<String> someLines = getArrayListFromFile();
-        System.out.println(someLines);
-        List<String> revertListElements = new ArrayList<>(someLines);
-        Collections.reverse(revertListElements);
-        writeArrayListToFile(revertListElements);
+        String fileName = "Task01_Original.txt";
+        String file = PATH_TO_TASK.concat(fileName);
+        String path = new File(file).getAbsolutePath();
+
+        List<String> someLines = getArrayListFromFile(path);
+        List<String> reverseElementsList = new ArrayList<>(someLines);
+        Collections.reverse(reverseElementsList);
+
+        String newFileName = "Task01_Revert.txt";
+        String newFile = PATH_TO_TASK.concat(newFileName);
+        String newPath = new File(newFile).getAbsolutePath();
+        writeArrayListToFile(reverseElementsList, newPath);
     }
 
-    private static List<String> getArrayListFromFile() {
+    private static List<String> getArrayListFromFile(String path) {
         List<String> lines = new ArrayList<>();
-        BufferedReader reader = null;
-        try {
-            reader = new BufferedReader(new FileReader(pathToTask + "Task01_Original.txt"));
+        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 lines.add(line);
             }
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
         }
         return lines;
     }
 
-    private static void writeArrayListToFile(List<String> list) {
-        FileWriter writer = null;
-        try {
-            writer = new FileWriter(pathToTask + "Task01_Revert.txt");
+    private static void writeArrayListToFile(List<String> list, String path) {
+        try (FileWriter writer = new FileWriter(path)) {
             for (String element : list) {
                 writer.write(element + "\n");
             }
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (writer != null) {
-                    writer.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
     }
 }

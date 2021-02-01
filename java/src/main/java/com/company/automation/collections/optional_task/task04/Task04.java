@@ -23,7 +23,7 @@ public class Task04 {
                 "Мы покинем их, и будем правы.";
 
         List<String> poemAsList;
-        poemAsList = Arrays.asList(poem.split("\\n"));
+        poemAsList = Arrays.asList(poem.split("\n"));
         poemAsList.sort(new StringLengthComparator());
         poemAsList.forEach(System.out::println);
     }

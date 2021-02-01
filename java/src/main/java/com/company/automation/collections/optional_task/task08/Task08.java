@@ -7,15 +7,23 @@ package com.company.automation.collections.optional_task.task08;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Scanner;
+import java.util.Set;
 
 public class Task08 {
-    private static final String PATH = new File("src" + File.separator + "main" + File.separator + "java" + File.separator + "com"
+    private static final String PATH_TO_TASK = "src" + File.separator + "main" + File.separator + "java" + File.separator + "com"
             + File.separator + "company" + File.separator + "automation" + File.separator + "collections" + File.separator
-            + "optional_task" + File.separator + "task08" + File.separator + "One_giant_leap_for_mankind.txt").getAbsolutePath();
+            + "optional_task" + File.separator + "task08" + File.separator;
 
     public static void main(String[] args) {
-        List<String> allUniqueWords = getAllUniqueWords(PATH);
+        String fileName = "One_giant_leap_for_mankind.txt";
+        String file = PATH_TO_TASK.concat(fileName);
+        List<String> allUniqueWords = getAllUniqueWords(file);
         System.out.println("All unique words: " + allUniqueWords.size());
         allUniqueWords.forEach(System.out::println);
     }
@@ -28,7 +36,7 @@ public class Task08 {
         Set<String> allUniqueWords;
         allUniqueWords = new HashSet<>(Arrays.asList(arrayOfAllWords));
         List<String> sortedUniqueWords = new ArrayList<>(allUniqueWords);
-        sortedUniqueWords.sort(String::compareTo);
+        sortedUniqueWords.sort(Comparator.naturalOrder());
         return sortedUniqueWords;
     }
 
